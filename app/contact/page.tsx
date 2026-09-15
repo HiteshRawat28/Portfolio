@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { PageShell } from "@/components/portfolio/page-shell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact",
   description: "Contact Hitesh Rawat about full-stack and AI application engineering opportunities.",
-};
+  path: "/contact",
+});
 
 const contactOptions = [
   { label: "Email", value: "23ucs595@lnmiit.ac.in", href: "mailto:23ucs595@lnmiit.ac.in" },

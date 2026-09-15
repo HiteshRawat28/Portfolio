@@ -1,12 +1,13 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
 import { PageShell } from "@/components/portfolio/page-shell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "About",
   description: "About Hitesh Rawat, his engineering focus, education, and working style.",
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

@@ -1,6 +1,16 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
+import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 import { PageShell } from "@/components/portfolio/page-shell";
+
+export const metadata: Metadata = {
+  title: "Page not found",
+  description: "The requested page could not be found.",
+  alternates: { canonical: null },
+  openGraph: null,
+  twitter: null,
+  robots: { index: false, follow: false },
+};
 
 export default function NotFound() {
   return (

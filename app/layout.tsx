@@ -9,11 +9,14 @@ export const metadata: Metadata = {
   },
   description:
     "Portfolio of Hitesh Rawat, a full-stack software engineer building multi-tenant business systems and practical AI applications.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Hitesh Rawat — Full-Stack & AI Applications Engineer",
     description: "Full-stack business systems, multi-tenant products, and practical AI applications.",
     type: "website",
     url: "/",
+    siteName: "Hitesh Rawat",
+    locale: "en_IN",
   },
   twitter: {
     card: "summary",

@@ -86,7 +86,7 @@ export default function Home() {
           </div>
           <div className="flagship-visual">
             <div className="flagship-image">
-              <img src={fleetpilot.image!.src} alt={fleetpilot.image!.alt} width={fleetpilot.image!.width} height={fleetpilot.image!.height} />
+              <img src={fleetpilot.image!.src} alt={fleetpilot.image!.alt} width={fleetpilot.image!.width} height={fleetpilot.image!.height} loading="lazy" decoding="async" />
               <span>FLEET OPERATIONS / PRODUCT VIEW</span>
             </div>
             <div className="system-map" aria-label="FleetPilot system overview">

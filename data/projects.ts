@@ -125,7 +125,6 @@ export const projects: Project[] = [
     categories: ["full-stack"],
     technologies: ["React", "Vite", "Node.js", "Express", "Prisma", "PostgreSQL", "JWT", "Zustand"],
     repositoryUrl: "https://github.com/HiteshRawat28/AssetFlow",
-    liveUrl: "https://asset-flow.ink",
     image: {
       src: "/projects/assetflow.png",
       alt: "AssetFlow employee dashboard with asset, booking, transfer, and maintenance overview",
@@ -157,9 +156,9 @@ export const projects: Project[] = [
       },
     ],
     security: ["JWT authentication", "Role-aware authorization", "Organization-level data isolation", "Separate platform role"],
-    testing: ["Live deployment is publicly accessible", "Repository includes a detailed product walkthrough and screenshot evidence"],
+    testing: ["Repository includes a detailed product walkthrough and screenshot evidence", "The public custom-domain deployment was rechecked before portfolio publication"],
     outcomes: ["Covers onboarding through day-to-day asset operations", "Provides separate employee, administrator, and platform-owner experiences"],
-    limitations: ["Invitation email delivery is identified as incomplete in the public documentation", "Published usage metrics are unavailable"],
+    limitations: ["Invitation email delivery is identified as incomplete in the public documentation", "The current custom domain resolves to a different project, so it is intentionally not promoted here", "Published usage metrics are unavailable"],
     nextSteps: ["Replace temporary credential handling with invitation delivery", "Add automated authorization and cross-tenant isolation tests"],
   },
   {

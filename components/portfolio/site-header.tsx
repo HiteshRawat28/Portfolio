@@ -23,7 +23,7 @@ export function SiteHeader() {
         Résumé <ArrowUpRight aria-hidden="true" size={15} />
       </a>
       <details className="mobile-menu">
-        <summary aria-label="Open navigation">
+        <summary>
           <Menu aria-hidden="true" size={20} />
           <span>Menu</span>
         </summary>

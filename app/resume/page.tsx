@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
 import { ArrowDownToLine, ArrowUpRight } from "lucide-react";
 import { PageShell } from "@/components/portfolio/page-shell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Résumé",
   description: "Résumé and professional summary for Hitesh Rawat.",
-};
+  path: "/resume",
+});
 
 export default function ResumePage() {
   return (
@@ -16,7 +17,7 @@ export default function ResumePage() {
         <p>A concise overview is available below. The source PDF is preserved as provided.</p>
         <div className="hero-actions">
           <a className="button button-primary" href="/Hitesh-Rawat-Resume.pdf" download>Download PDF <ArrowDownToLine aria-hidden="true" size={17} /></a>
-          <a className="button button-secondary" href="/Hitesh-Rawat-Resume.pdf" target="_blank">Open PDF <ArrowUpRight aria-hidden="true" size={17} /></a>
+          <a className="button button-secondary" href="/Hitesh-Rawat-Resume.pdf" target="_blank" rel="noreferrer noopener">Open PDF <ArrowUpRight aria-hidden="true" size={17} /></a>
         </div>
       </header>
       <section className="resume-summary">

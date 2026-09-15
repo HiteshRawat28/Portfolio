@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { PageShell } from "@/components/portfolio/page-shell";
 import { getProject, projects } from "@/data/projects";
+import { pageMetadata } from "@/lib/metadata";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -13,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return {};
-  return { title: project.name, description: project.shortDescription };
+  return pageMetadata({ title: project.name, description: project.shortDescription, path: `/projects/${project.slug}` });
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -47,7 +48,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         {project.image && (
           <figure className="case-media">
-            <img src={project.image.src} alt={project.image.alt} width={project.image.width} height={project.image.height} />
+            <img src={project.image.src} alt={project.image.alt} width={project.image.width} height={project.image.height} loading="lazy" decoding="async" />
             <figcaption>Project media from the public repository.</figcaption>
           </figure>
         )}

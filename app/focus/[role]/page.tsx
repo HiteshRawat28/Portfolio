@@ -3,9 +3,11 @@ import { notFound } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import { PageShell } from "@/components/portfolio/page-shell";
 import { aiProjects, fullStackProjects } from "@/data/projects";
+import { pageMetadata } from "@/lib/metadata";
 
 const lenses = {
   "full-stack": {
+    metadataTitle: "Full-Stack Engineering",
     eyebrow: "FULL-STACK ENGINEERING",
     title: "End-to-end ownership, backed by system boundaries.",
     intro: "Evidence across product interfaces, APIs, relational models, authorization, transactions, external integrations, testing, and deployment.",
@@ -13,6 +15,7 @@ const lenses = {
     signals: ["Product ownership", "API and data modeling", "Authorization and multi-tenancy", "Transactional workflows", "Testing and delivery"],
   },
   "ai-applications": {
+    metadataTitle: "AI Application Engineering",
     eyebrow: "AI APPLICATION ENGINEERING",
     title: "AI integrated into workflows, not added as decoration.",
     intro: "Evidence around tool permissions, human confirmation, guardrails, observable execution, provider failures, and application-level controls.",
@@ -28,7 +31,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ role: string }> }): Promise<Metadata> {
   const { role } = await params;
   const lens = lenses[role as keyof typeof lenses];
-  return lens ? { title: lens.eyebrow.replace(" ENGINEERING", ""), description: lens.intro } : {};
+  return lens ? pageMetadata({ title: lens.metadataTitle, description: lens.intro, path: `/focus/${role}` }) : {};
 }
 
 export default async function FocusPage({ params }: { params: Promise<{ role: string }> }) {
