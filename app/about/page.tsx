@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PageShell } from "@/components/portfolio/page-shell";
 
@@ -37,7 +37,7 @@ export default function AboutPage() {
           <article><span>03</span><h2>Make limitations visible</h2><p>Document what has been verified, what remains experimental, and what should be improved next.</p></article>
         </div>
       </section>
-      <section className="simple-cta"><h2>See the systems behind the approach.</h2><Link href="/projects">View project index <ArrowUpRight aria-hidden="true" size={17} /></Link></section>
+      <section className="simple-cta"><h2>See the systems behind the approach.</h2><a href="/projects">View project index <ArrowUpRight aria-hidden="true" size={17} /></a></section>
     </PageShell>
   );
 }

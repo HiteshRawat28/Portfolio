@@ -1,4 +1,4 @@
-import Link from "next/link";
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { ArrowUpRight, Menu } from "lucide-react";
 
 const links = [
@@ -11,17 +11,17 @@ const links = [
 export function SiteHeader() {
   return (
     <header className="site-header">
-      <Link className="wordmark" href="/" aria-label="Hitesh Rawat, home">
+      <a className="wordmark" href="/" aria-label="Hitesh Rawat, home">
         HR<span className="wordmark-dot">.</span>
-      </Link>
+      </a>
       <nav className="desktop-nav" aria-label="Primary navigation">
         {links.map((link) => (
-          <Link href={link.href} key={link.href}>{link.label}</Link>
+          <a href={link.href} key={link.href}>{link.label}</a>
         ))}
       </nav>
-      <Link className="header-action" href="/resume">
+      <a className="header-action" href="/resume">
         Résumé <ArrowUpRight aria-hidden="true" size={15} />
-      </Link>
+      </a>
       <details className="mobile-menu">
         <summary aria-label="Open navigation">
           <Menu aria-hidden="true" size={20} />
@@ -29,9 +29,9 @@ export function SiteHeader() {
         </summary>
         <nav aria-label="Mobile navigation">
           {links.map((link) => (
-            <Link href={link.href} key={link.href}>{link.label}</Link>
+            <a href={link.href} key={link.href}>{link.label}</a>
           ))}
-          <Link href="/resume">Résumé</Link>
+          <a href="/resume">Résumé</a>
         </nav>
       </details>
     </header>

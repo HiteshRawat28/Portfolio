@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
+/* eslint-disable @next/next/no-html-link-for-pages, @next/next/no-img-element */
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { PageShell } from "@/components/portfolio/page-shell";
 import { ProjectRow } from "@/components/portfolio/project-row";
@@ -37,9 +36,9 @@ export default function Home() {
             <a className="button button-primary" href="#work">
               View selected work <ArrowDown aria-hidden="true" size={17} />
             </a>
-            <Link className="button button-secondary" href="/resume">
+            <a className="button button-secondary" href="/resume">
               View résumé <ArrowRight aria-hidden="true" size={17} />
-            </Link>
+            </a>
           </div>
         </div>
         <aside className="hero-proof" aria-label="Engineering focus">
@@ -80,14 +79,14 @@ export default function Home() {
               <li>HMAC-verified webhooks with idempotent transaction matching</li>
             </ul>
             <div className="project-links">
-              <Link href="/projects/fleetpilot">Read case study <ArrowUpRight aria-hidden="true" size={16} /></Link>
+              <a href="/projects/fleetpilot">Read case study <ArrowUpRight aria-hidden="true" size={16} /></a>
               <a href={fleetpilot.liveUrl} {...externalProps}>Live product <ArrowUpRight aria-hidden="true" size={16} /></a>
               <a href={fleetpilot.repositoryUrl} {...externalProps}>Source <ArrowUpRight aria-hidden="true" size={16} /></a>
             </div>
           </div>
           <div className="flagship-visual">
             <div className="flagship-image">
-              <Image unoptimized src={fleetpilot.image!.src} alt={fleetpilot.image!.alt} width={fleetpilot.image!.width} height={fleetpilot.image!.height} />
+              <img src={fleetpilot.image!.src} alt={fleetpilot.image!.alt} width={fleetpilot.image!.width} height={fleetpilot.image!.height} />
               <span>FLEET OPERATIONS / PRODUCT VIEW</span>
             </div>
             <div className="system-map" aria-label="FleetPilot system overview">
@@ -110,7 +109,7 @@ export default function Home() {
         </div>
 
         <div className="section-end-link">
-          <Link href="/projects">View all projects <ArrowRight aria-hidden="true" size={17} /></Link>
+          <a href="/projects">View all projects <ArrowRight aria-hidden="true" size={17} /></a>
         </div>
       </section>
 
@@ -119,16 +118,16 @@ export default function Home() {
           <p className="eyebrow">ROLE-SPECIFIC EVIDENCE</p>
           <h2 id="role-title">Read the work through the role you are hiring for.</h2>
         </div>
-        <Link className="role-lens" href="/focus/full-stack">
+        <a className="role-lens" href="/focus/full-stack">
           <span>01</span>
           <div><strong>Full-stack engineering</strong><p>Product ownership, APIs, data models, authorization, transactions, and delivery.</p></div>
           <ArrowUpRight aria-hidden="true" size={22} />
-        </Link>
-        <Link className="role-lens" href="/focus/ai-applications">
+        </a>
+        <a className="role-lens" href="/focus/ai-applications">
           <span>02</span>
           <div><strong>AI application engineering</strong><p>Tool permissions, human approval, guardrails, observability, and failure handling.</p></div>
           <ArrowUpRight aria-hidden="true" size={22} />
-        </Link>
+        </a>
       </section>
 
       <section className="section ai-section" id="ai-lab" aria-labelledby="ai-title">
@@ -149,7 +148,7 @@ export default function Home() {
               <ul>
                 {project.decisions.map((decision) => <li key={decision.title}>{decision.title}</li>)}
               </ul>
-              <Link href={`/projects/${project.slug}`}>Explore the system <ArrowUpRight aria-hidden="true" size={16} /></Link>
+              <a href={`/projects/${project.slug}`}>Explore the system <ArrowUpRight aria-hidden="true" size={16} /></a>
             </article>
           ))}
         </div>
@@ -190,7 +189,7 @@ export default function Home() {
               <div><strong>300+</strong><span>LeetCode problems solved</span></div>
               <div><strong>2026</strong><span>Odoo Hackathon participant</span></div>
             </div>
-            <Link className="text-link" href="/about">More about how I work <ArrowRight aria-hidden="true" size={16} /></Link>
+            <a className="text-link" href="/about">More about how I work <ArrowRight aria-hidden="true" size={16} /></a>
           </div>
         </div>
       </section>
@@ -201,7 +200,7 @@ export default function Home() {
         <p>I’m looking for teams where I can contribute across product, backend systems, and responsible AI integration.</p>
         <div className="hero-actions">
           <a className="button button-primary" href="mailto:23ucs595@lnmiit.ac.in">Email Hitesh <ArrowUpRight aria-hidden="true" size={17} /></a>
-          <Link className="button button-secondary" href="/contact">Contact options</Link>
+          <a className="button button-secondary" href="/contact">Contact options</a>
         </div>
       </section>
     </PageShell>

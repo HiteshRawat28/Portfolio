@@ -1,20 +1,20 @@
-import Link from "next/link";
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { ArrowUpRight } from "lucide-react";
 
 export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div>
-        <Link className="wordmark" href="/" aria-label="Hitesh Rawat, home">
+        <a className="wordmark" href="/" aria-label="Hitesh Rawat, home">
           HR<span className="wordmark-dot">.</span>
-        </Link>
+        </a>
         <p>Full-stack software engineer building business systems and practical AI applications.</p>
       </div>
       <nav aria-label="Footer navigation">
-        <Link href="/projects">Projects</Link>
-        <Link href="/focus/full-stack">Full-stack</Link>
-        <Link href="/focus/ai-applications">AI applications</Link>
-        <Link href="/resume">Résumé</Link>
+        <a href="/projects">Projects</a>
+        <a href="/focus/full-stack">Full-stack</a>
+        <a href="/focus/ai-applications">AI applications</a>
+        <a href="/resume">Résumé</a>
       </nav>
       <div className="footer-external">
         <a href="https://github.com/HiteshRawat28" target="_blank" rel="noreferrer noopener">

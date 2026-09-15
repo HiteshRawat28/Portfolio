@@ -1,6 +1,5 @@
+/* eslint-disable @next/next/no-html-link-for-pages, @next/next/no-img-element */
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { PageShell } from "@/components/portfolio/page-shell";
@@ -26,7 +25,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     <PageShell>
       <article className="case-study">
         <header className="case-hero">
-          <Link className="back-link" href="/projects"><ArrowLeft aria-hidden="true" size={16} /> All projects</Link>
+          <a className="back-link" href="/projects"><ArrowLeft aria-hidden="true" size={16} /> All projects</a>
           <div className="case-title-grid">
             <p className="case-index">CASE / {String(projects.findIndex((item) => item.slug === project.slug) + 1).padStart(2, "0")}</p>
             <div>
@@ -48,7 +47,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         {project.image && (
           <figure className="case-media">
-            <Image unoptimized src={project.image.src} alt={project.image.alt} width={project.image.width} height={project.image.height} />
+            <img src={project.image.src} alt={project.image.alt} width={project.image.width} height={project.image.height} />
             <figcaption>Project media from the public repository.</figcaption>
           </figure>
         )}
@@ -126,8 +125,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </section>
 
         <nav className="case-next" aria-label="Project navigation">
-          <Link href="/projects"><ArrowLeft aria-hidden="true" size={16} /> Project index</Link>
-          <Link href="/contact">Discuss this work <ArrowUpRight aria-hidden="true" size={16} /></Link>
+          <a href="/projects"><ArrowLeft aria-hidden="true" size={16} /> Project index</a>
+          <a href="/contact">Discuss this work <ArrowUpRight aria-hidden="true" size={16} /></a>
         </nav>
       </article>
     </PageShell>
