@@ -13,7 +13,7 @@ type Props = {
     }
 );
 export function Button(props: Props) {
-  const classes = `feedback inline-flex min-h-12 items-center justify-center gap-3 rounded-button border bg-background px-6 py-3 text-base font-normal text-primary ${props.variant === "secondary" ? "border-border-strong hover:border-primary hover:bg-surface" : "border-primary shadow-action hover:bg-surface-elevated"} ${props.className ?? ""}`;
+  const classes = `feedback inline-flex min-h-12 items-center justify-center gap-3 rounded-button border px-6 py-3 text-sm font-medium ${props.variant === "secondary" ? "border-border-strong bg-transparent text-primary hover:border-accent hover:text-accent" : "border-accent bg-accent text-inverse shadow-action hover:border-accent-hover hover:bg-accent-hover"} ${props.className ?? ""}`;
   if (props.href !== undefined)
     return props.download ? (
       <a href={props.href} download={props.download} className={classes}>

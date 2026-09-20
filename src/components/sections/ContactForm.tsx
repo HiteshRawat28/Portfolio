@@ -71,7 +71,7 @@ export function ContactForm() {
     }
   }
   const inputClass =
-    "mt-2 min-h-11 w-full rounded-tag border border-secondary bg-surface-elevated px-3 py-3 text-primary focus-visible:border-accent";
+    "feedback mt-2 min-h-12 w-full rounded-button border border-border-strong bg-surface-elevated px-4 py-3 text-primary hover:border-accent focus-visible:border-accent";
   return (
     <form
       ref={form}

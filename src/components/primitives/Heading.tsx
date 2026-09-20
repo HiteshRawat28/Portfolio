@@ -10,9 +10,12 @@ export function Heading({
   id?: string;
 }) {
   const Tag = `h${level}` as "h1" | "h2" | "h3" | "h4";
-  const size = { 1: "text-4xl", 2: "text-3xl", 3: "text-2xl", 4: "text-xl" }[
-    level
-  ];
+  const size = {
+    1: "text-5xl md:text-7xl",
+    2: "text-3xl md:text-4xl",
+    3: "text-2xl",
+    4: "text-xl",
+  }[level];
   return (
     <Tag id={id} className={`${size} ${className}`}>
       {children}

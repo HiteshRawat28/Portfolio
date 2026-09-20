@@ -15,13 +15,12 @@ export default function FocusPage() {
     <Container className="section-space">
       <p className="eyebrow text-accent">Focus / full-stack</p>
       <Heading level={1} className="mt-6">
-        Interfaces, APIs and business rules.
+        My full-stack engineering work.
       </Heading>
       <Text className="mt-6 text-lg">
-        For full-stack and software-development roles: start with FleetPilot’s
-        operational workflow, then compare tenant-aware asset management,
-        transactional billing, and collaborative sales operations. Look for
-        decisions that connect the interface to server-side rules.
+        These projects connect interfaces to API boundaries, authorization,
+        transactions, and operational data. My role and the limits of each
+        implementation stay visible throughout.
       </Text>
       <TextLink href="/focus/ai-applications" className="mt-5">
         View the AI applications focus

@@ -54,9 +54,9 @@ export async function GET() {
         <div style={{ display: "flex", fontSize: 26 }}>Hitesh Rawat</div>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        <div style={{ display: "flex", fontSize: 58 }}>Full-stack systems.</div>
+        <div style={{ display: "flex", fontSize: 58 }}>Software engineer.</div>
         <div style={{ display: "flex", fontSize: 58 }}>
-          Practical AI applications.
+          Full-stack products · practical AI.
         </div>
       </div>
       <div
@@ -68,7 +68,7 @@ export async function GET() {
           color: colors.secondary,
         }}
       >
-        Business workflows · Server-side rules · Bounded AI tools
+        Projects · Decisions · Evidence · Limitations
       </div>
     </div>,
     {

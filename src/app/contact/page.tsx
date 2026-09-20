@@ -23,13 +23,13 @@ export default function ContactPage() {
   );
   return (
     <Container className="section-space">
-      <p className="eyebrow text-accent">Contact / start a conversation</p>
+      <p className="eyebrow text-accent">Contact / opportunities</p>
       <Heading level={1} className="mt-6">
-        Have a role or a technical problem in mind?
+        I’m open to software engineering opportunities.
       </Heading>
       <Text className="mt-6 text-lg">
-        For software development, full-stack or AI application opportunities,
-        include the role, team and a little context.
+        If you’re hiring for full-stack, backend, or practical AI application
+        work, send the role, team, and a little context.
       </Text>
       <div className="mt-8">
         <TextLink

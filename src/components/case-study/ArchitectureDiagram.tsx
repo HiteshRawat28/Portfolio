@@ -15,7 +15,7 @@ export function ArchitectureDiagram({
         {steps.map((step, i) => (
           <li
             key={step.title}
-            className="min-w-0 border border-border bg-surface-elevated p-5"
+            className="editorial-card min-w-0 rounded-media p-5"
           >
             <p className="font-mono text-xs text-accent">
               {String(i + 1).padStart(2, "0")} / {step.title}

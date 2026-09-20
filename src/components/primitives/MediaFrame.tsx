@@ -9,7 +9,7 @@ export function MediaFrame({
 }) {
   return (
     <figure className="min-w-0">
-      <div className="overflow-hidden rounded-media border border-border bg-surface-elevated shadow-frame">
+      <div className="editorial-card overflow-hidden rounded-media">
         <Image
           src={media.src}
           alt={media.alt}

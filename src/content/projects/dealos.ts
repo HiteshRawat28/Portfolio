@@ -110,10 +110,10 @@ export const dealos: Project = {
   liveUrl: null,
   media: [
     {
-      src: "/media/generated/dealos-concept.webp",
-      alt: "Monochrome concept illustration of a collaborative sales pipeline with connected deal stages",
-      width: 1402,
-      height: 1122,
+      src: "/media/generated/dealos-ui-v2.webp",
+      alt: "Editorial interface concept showing a collaborative quotation, approval, order, payment and shipment workflow",
+      width: 1360,
+      height: 1020,
       caption: "AI-generated concept visual — not a product screenshot.",
     },
   ],

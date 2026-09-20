@@ -106,10 +106,10 @@ export const personalOpsAgent: Project = {
   liveUrl: null,
   media: [
     {
-      src: "/media/generated/personal-ops-concept.webp",
-      alt: "Monochrome concept illustration of an assistant connecting notes to a calendar through a confirmation gate",
-      width: 1312,
-      height: 1199,
+      src: "/media/generated/personal-ops-ui-v2.webp",
+      alt: "Editorial interface concept showing a bounded assistant loop connecting notes and calendar tools through human confirmation",
+      width: 1360,
+      height: 1020,
       caption: "AI-generated concept visual — not a product screenshot.",
     },
   ],

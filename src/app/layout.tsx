@@ -23,13 +23,13 @@ const sans = localFont({
   variable: "--font-portfolio-sans",
 });
 export const metadata: Metadata = buildMetadata(
-  "Hitesh Rawat — Full-Stack and AI Applications Engineer",
-  "Full-stack software engineer building secure, multi-tenant business systems and practical AI applications.",
+  "Hitesh Rawat — Software Engineer",
+  "Hitesh Rawat builds full-stack products and practical AI applications, with inspectable project decisions and limitations.",
   "/",
 );
 export const viewport: Viewport = {
-  themeColor: "#000000",
-  colorScheme: "dark",
+  themeColor: "#f4f1e9",
+  colorScheme: "light",
 };
 export default function RootLayout({
   children,

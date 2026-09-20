@@ -2,7 +2,7 @@
 
 Updated 2026-09-16. See EVIDENCE.md for inspection details.
 
-Current Portfolite frontend: the owner requested generated imagery for every media slot except the professional portrait. Six project and two supporting monochrome concept illustrations are installed and explicitly labelled AI-generated; none is presented as a product screenshot or implementation evidence. The portrait remains an honest placeholder until a real photo is supplied. Genuine workflow captures remain a future upgrade. Replacement instructions are in FRONTEND-REDESIGN.md.
+Current Crafted frontend: the owner requested generated imagery for every media slot except the professional portrait. Six project-specific and two supporting light editorial UI illustrations are installed and explicitly labelled AI-generated; none is presented as a product screenshot or implementation evidence. The homepage is organized as Hitesh Rawat's personal engineering portfolio, with verified role/ownership visible before project evidence. The portrait remains reserved for a real photo. Genuine workflow captures remain a future upgrade. Replacement instructions are in FRONTEND-REDESIGN.md.
 
 - FleetPilot/TransitOps: current GitHub API resolves both names to TransitOps and identical commits. Scaffold's claim of two independent repositories is outdated. Display FleetPilot, link TransitOps; any repository rename is Hitesh's decision.
 - AssetFlow domain currently serves FleetPilot. No live AssetFlow CTA until the owner fixes/verifies it.

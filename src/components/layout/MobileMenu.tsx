@@ -4,11 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AccessibleIcon } from "../primitives/AccessibleIcon";
+import { profile } from "@/content/profile";
 const items = [
-  { href: "/projects", label: "Projects" },
-  { href: "/focus/ai-applications", label: "AI Lab" },
+  { href: "/projects", label: "Work" },
+  { href: "/#experience", label: "Experience" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/resume", label: "Résumé" },
 ];
 export function MobileMenu() {
   const pathname = usePathname();
@@ -38,7 +39,7 @@ export function MobileMenu() {
     };
   }, [open]);
   const current = (href: string) =>
-    pathname === href ||
+    (!href.includes("#") && pathname === href) ||
     (href === "/projects" && pathname.startsWith("/projects/"));
   return (
     <>
@@ -60,7 +61,7 @@ export function MobileMenu() {
       <button
         ref={trigger}
         type="button"
-        className="inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-button px-2 lg:hidden"
+        className="feedback inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-button border border-border-strong px-3 lg:hidden"
         aria-expanded={open}
         aria-controls="mobile-navigation"
         onClick={() => setOpen(true)}
@@ -90,7 +91,7 @@ export function MobileMenu() {
         }}
         onCancel={() => setOpen(false)}
         onClose={() => setOpen(false)}
-        className="m-auto max-h-[90dvh] w-[calc(100%_-_2rem)] max-w-lg overflow-y-auto rounded-media border border-border-strong bg-surface p-6 text-primary shadow-frame backdrop:bg-background/80"
+        className="m-auto max-h-[90dvh] w-[calc(100%_-_2rem)] max-w-lg overflow-y-auto rounded-media border border-border-strong bg-surface-elevated p-6 text-primary shadow-frame backdrop:bg-primary/30"
       >
         <div className="flex items-center justify-between gap-4">
           <h2 id="menu-title" className="text-xl">
@@ -115,18 +116,18 @@ export function MobileMenu() {
               key={item.href}
               href={item.href}
               aria-current={current(item.href) ? "page" : undefined}
-              className="min-h-11 border-b border-border py-3 text-lg hover:text-accent"
+              className="feedback min-h-11 border-b border-border py-3 text-lg hover:border-accent hover:text-accent"
               onClick={() => setOpen(false)}
             >
               {item.label}
             </Link>
           ))}
           <Link
-            href="/Hitesh-Rawat-Resume.pdf"
+            href={`mailto:${profile.email}`}
             className="mt-4 min-h-11 py-3 text-accent"
             onClick={() => setOpen(false)}
           >
-            Open résumé PDF
+            Email Hitesh
           </Link>
         </nav>
       </dialog>

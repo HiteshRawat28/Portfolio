@@ -20,7 +20,7 @@ export function PortfolioImage({
   }[aspect];
   return (
     <div
-      className={`relative overflow-hidden rounded-media border border-border bg-surface-elevated ${ratio} ${className}`}
+      className={`project-visual relative overflow-hidden rounded-media border border-border bg-surface-elevated ${ratio} ${className}`}
     >
       {media ? (
         <>
@@ -36,7 +36,7 @@ export function PortfolioImage({
             }
             className={`h-full w-full ${aspect === "project" ? "object-contain" : "object-cover"}`}
           />
-          <p className="absolute right-3 bottom-3 max-w-[calc(100%_-_1.5rem)] rounded-full border border-border bg-black/80 px-3 py-1.5 text-[0.65rem] text-secondary backdrop-blur-sm">
+          <p className="absolute right-3 bottom-3 max-w-[calc(100%_-_1.5rem)] rounded-tag border border-border bg-primary/90 px-3 py-1.5 text-[0.65rem] text-inverse">
             {media.caption}
           </p>
         </>

@@ -170,7 +170,7 @@ export default async function ProjectPage({
           >
             Explore related engineering work
           </TextLink>
-          <TextLink href="/contact">Discuss this project with Hitesh</TextLink>
+          <TextLink href="/contact">Email me about this work</TextLink>
         </div>
       ),
     },
@@ -184,6 +184,7 @@ export default async function ProjectPage({
           className="flex flex-wrap gap-x-6 border-b border-border py-5"
         >
           {[
+            "contribution",
             "decisions",
             "security",
             "data",

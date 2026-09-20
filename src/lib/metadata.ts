@@ -17,10 +17,9 @@ export function buildMetadata(
   description: string,
   path: string,
 ): Metadata {
-  const fullTitle =
-    title === "Hitesh Rawat — Full-Stack and AI Applications Engineer"
-      ? title
-      : `${title} — Hitesh Rawat`;
+  const fullTitle = title.startsWith("Hitesh Rawat")
+    ? title
+    : `${title} — Hitesh Rawat`;
   return {
     title: fullTitle,
     description,
@@ -38,7 +37,7 @@ export function buildMetadata(
           url: "/og-default.png",
           width: 1200,
           height: 630,
-          alt: "Hitesh Rawat — Full-stack systems and practical AI applications",
+          alt: "Hitesh Rawat — Software engineer building full-stack products and practical AI applications",
         },
       ],
     },

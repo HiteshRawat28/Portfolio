@@ -24,6 +24,12 @@ export const homepageOrder = [
   "personal-ops-agent",
   "ai-guardrails",
 ] as const;
+export const featuredWorkOrder = [
+  "fleetpilot",
+  "swiftbill",
+  "personal-ops-agent",
+] as const;
+export const moreWorkOrder = ["assetflow", "dealos", "ai-guardrails"] as const;
 export const fullStackOrder = [
   "fleetpilot",
   "assetflow",

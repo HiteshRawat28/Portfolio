@@ -31,6 +31,6 @@ test("foundation exposes every color and reduced-motion override", () => {
   );
   assert.deepEqual(
     [motion.feedback, motion.reveal, motion.menu],
-    [150, 250, 350],
+    [140, 460, 260],
   );
 });

@@ -15,13 +15,12 @@ export default function FocusPage() {
     <Container className="section-space">
       <p className="eyebrow text-ai-accent">Focus / ai-applications</p>
       <Heading level={1} className="mt-6">
-        AI inside a real workflow.
+        My applied AI work.
       </Heading>
       <Text className="mt-6 text-lg">
-        For AI-application roles: start with FleetPilot’s operational Copilot,
-        then explore typed calendar tools and generation checks. The emphasis is
-        permissions, approval, traces and failure behavior—not a model-provider
-        badge. Supporting business systems follow the AI projects.
+        I use AI inside bounded application workflows: scoped tools, explicit
+        approval, visible failure paths, and honest evaluation gaps. Supporting
+        business systems follow the three AI-focused projects.
       </Text>
       <TextLink href="/focus/full-stack" className="mt-5">
         View the full-stack focus

@@ -11,7 +11,7 @@ export function FocusProjects({
   ai?: boolean;
 }) {
   return (
-    <div className="mt-12 divide-y divide-border">
+    <div className="mt-12 divide-y divide-border border-t border-border">
       {order.map((slug, i) => {
         const p = getProject(slug);
         if (!p) return null;
@@ -19,7 +19,7 @@ export function FocusProjects({
         return (
           <article
             key={slug}
-            className="grid gap-6 py-10 lg:grid-cols-[3rem_1fr_1.7fr]"
+            className="grid gap-6 py-12 lg:grid-cols-[3rem_1fr_1.7fr] lg:gap-10"
           >
             <p
               className={`font-mono text-xs ${ai ? "text-ai-accent" : "text-accent"}`}
@@ -31,6 +31,7 @@ export function FocusProjects({
                 {p.name}
                 {controls && slug === "fleetpilot" ? " / Copilot" : ""}
               </Heading>
+              <p className="mt-3 text-sm font-medium">{p.role}</p>
               <div className="mt-5">
                 <ProjectMeta project={p} />
               </div>
@@ -63,9 +64,22 @@ export function FocusProjects({
                 </dl>
               ) : (
                 <div className="mt-5 grid gap-4">
-                  <Text>{p.technicalDecisions[0]?.detail}</Text>
+                  <div>
+                    <p className="font-medium">
+                      {p.technicalDecisions[0]?.title}
+                    </p>
+                    <Text className="mt-2">
+                      {p.technicalDecisions[0]?.detail}
+                    </Text>
+                  </div>
                   <Text className="text-sm">{p.security[0]}</Text>
                   <Text className="text-sm">{p.testing[0]}</Text>
+                  <Text className="text-sm">
+                    <span className="font-medium text-primary">
+                      Known limit:
+                    </span>
+                    {p.limitations[0]}
+                  </Text>
                 </div>
               )}
             </div>

@@ -106,10 +106,10 @@ export const aiGuardrails: Project = {
   liveUrl: null,
   media: [
     {
-      src: "/media/generated/ai-guardrails-concept.webp",
-      alt: "Monochrome concept illustration of conversation paths passing through layered safety and evaluation checkpoints",
-      width: 1374,
-      height: 1145,
+      src: "/media/generated/ai-guardrails-ui-v2.webp",
+      alt: "Editorial interface concept showing input checks, generation, output rules, allow, sanitize and refusal paths, and event logging",
+      width: 1360,
+      height: 1020,
       caption: "AI-generated concept visual — not a product screenshot.",
     },
   ],

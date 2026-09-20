@@ -4,16 +4,16 @@ import { MobileMenu } from "./MobileMenu";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-background">
+    <header className="sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur-md">
       <Container className="portfolio-nav flex items-center justify-between gap-4">
         <Link
           href="/"
           aria-label="Hitesh Rawat home"
-          className="inline-flex min-h-11 items-center gap-3 text-lg font-medium"
+          className="feedback inline-flex min-h-11 items-center gap-3 text-base font-medium hover:text-accent"
         >
           <span
             aria-hidden="true"
-            className="inline-flex size-8 items-center justify-center rounded-tag border border-border-strong text-xs"
+            className="inline-flex size-8 items-center justify-center rounded-tag bg-accent text-xs text-inverse"
           >
             <svg
               aria-hidden="true"
@@ -29,28 +29,25 @@ export function SiteHeader() {
           </span>
           Hitesh Rawat
         </Link>
-        <div className="flex items-center gap-8">
-          <MobileMenu />
-          <Link
-            href="/resume"
-            className="feedback hidden min-h-11 items-center rounded-full border border-border-strong bg-surface px-5 text-sm hover:border-primary lg:inline-flex"
-          >
-            View résumé
-          </Link>
-        </div>
+        <MobileMenu />
       </Container>
       <noscript>
         <nav
           aria-label="Navigation without JavaScript"
           className="site-container flex flex-wrap gap-4 pb-4"
         >
-          {["projects", "about", "resume", "contact"].map((page) => (
+          {[
+            ["/projects", "Work"],
+            ["/#experience", "Experience"],
+            ["/about", "About"],
+            ["/resume", "Résumé"],
+          ].map(([href, label]) => (
             <a
-              key={page}
-              href={`/${page}`}
+              key={href}
+              href={href}
               className="min-h-11 min-w-11 content-center text-accent"
             >
-              {page}
+              {label}
             </a>
           ))}
         </nav>

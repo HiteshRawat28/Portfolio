@@ -2,7 +2,7 @@ import type { Profile } from "@/lib/types";
 export const profile: Profile = {
   name: "Hitesh Rawat",
   positioning:
-    "Full-stack software engineer building secure, multi-tenant business systems and practical AI applications.",
+    "Software engineer building full-stack products and practical AI applications.",
   email: "23ucs595@lnmiit.ac.in",
   location: "Jaipur, India",
   education: "B.Tech · Computer Science · LNMIIT, Jaipur",

@@ -3,7 +3,12 @@ import assert from "node:assert/strict";
 import { readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { processSteps } from "../src/content/process";
-import { homepageOrder, projects } from "../src/content/projects";
+import {
+  featuredWorkOrder,
+  homepageOrder,
+  moreWorkOrder,
+  projects,
+} from "../src/content/projects";
 import { designMedia } from "../src/content/design-media";
 
 test("home gallery includes each real project exactly once", () => {
@@ -11,6 +16,18 @@ test("home gallery includes each real project exactly once", () => {
   assert.equal(new Set(homepageOrder).size, projects.length);
   assert.deepEqual(
     [...homepageOrder].sort(),
+    projects.map((project) => project.slug).sort(),
+  );
+});
+test("featured and secondary work cover the portfolio without duplication", () => {
+  assert.deepEqual(featuredWorkOrder, [
+    "fleetpilot",
+    "swiftbill",
+    "personal-ops-agent",
+  ]);
+  assert.equal(new Set([...featuredWorkOrder, ...moreWorkOrder]).size, 6);
+  assert.deepEqual(
+    [...featuredWorkOrder, ...moreWorkOrder].sort(),
     projects.map((project) => project.slug).sort(),
   );
 });

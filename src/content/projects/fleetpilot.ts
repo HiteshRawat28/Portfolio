@@ -116,10 +116,10 @@ export const fleetpilot: Project = {
   liveUrl: "https://fleet-pilot-khaki.vercel.app",
   media: [
     {
-      src: "/media/generated/fleetpilot-concept.webp",
-      alt: "Monochrome concept illustration of fleet routes, dispatch stations, vehicles and an AI decision core",
-      width: 1312,
-      height: 1199,
+      src: "/media/generated/fleetpilot-ui-v2.webp",
+      alt: "Editorial interface concept showing fleet availability, route planning, dispatch timing and an AI confirmation step",
+      width: 1360,
+      height: 1020,
       caption: "AI-generated concept visual — not a product screenshot.",
     },
   ],

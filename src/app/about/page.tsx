@@ -14,14 +14,17 @@ export const metadata = buildMetadata(
 export default function AboutPage() {
   return (
     <Container className="section-space">
-      <p className="eyebrow text-accent">
-        About / the engineer behind the work
-      </p>
+      <p className="eyebrow text-accent">About / Hitesh Rawat</p>
       <Heading level={1} className="mt-6">
-        I connect interfaces to the rules behind them.
+        I build software around real workflows.
       </Heading>
       <Stack className="mt-8 max-w-3xl">
         <Text className="text-lg">{profile.bio}</Text>
+        <Text>
+          I’m studying Computer Science at LNMIIT in Jaipur and currently
+          focusing on full-stack product engineering, backend rules, and
+          practical AI applications with visible human control.
+        </Text>
         <Divider />
         <div>
           <Heading>Education</Heading>
@@ -29,16 +32,16 @@ export default function AboutPage() {
           <Text>{profile.educationPeriod}</Text>
         </div>
         <div>
-          <Heading>Working with teams</Heading>
+          <Heading>Experience with teams</Heading>
           <Text className="mt-4">{profile.leadership}</Text>
           <Text className="mt-4">{profile.achievement}</Text>
         </div>
         <div>
           <Heading>Engineering approach</Heading>
           <Text className="mt-4">
-            I make authorization, data consistency and failure behavior part of
-            the workflow—not hidden assumptions. The case studies explain the
-            implementation and what still needs testing.
+            I make authorization, data consistency, and failure behavior part of
+            the workflow—not hidden assumptions. My case studies show the
+            implementation evidence and what still needs testing.
           </Text>
           <Text className="mt-4">{profile.problemSolving}</Text>
         </div>
@@ -48,7 +51,8 @@ export default function AboutPage() {
               {link.label}
             </TextLink>
           ))}
-          <TextLink href="/contact">Get in touch</TextLink>
+          <TextLink href="/resume">View résumé</TextLink>
+          <TextLink href="/contact">Email me</TextLink>
         </div>
       </Stack>
     </Container>

@@ -110,10 +110,10 @@ export const assetflow: Project = {
   liveUrl: null,
   media: [
     {
-      src: "/media/generated/assetflow-concept.webp",
-      alt: "Monochrome concept illustration of organization-scoped equipment, booking slots and access boundaries",
-      width: 1402,
-      height: 1122,
+      src: "/media/generated/assetflow-ui-v2.webp",
+      alt: "Editorial interface concept showing an equipment catalog, organization roles and booking-conflict checks",
+      width: 1360,
+      height: 1020,
       caption: "AI-generated concept visual — not a product screenshot.",
     },
   ],

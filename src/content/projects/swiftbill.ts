@@ -106,10 +106,10 @@ export const swiftbill: Project = {
   liveUrl: "https://swift-bill-kappa.vercel.app",
   media: [
     {
-      src: "/media/generated/swiftbill-concept.webp",
-      alt: "Monochrome concept illustration connecting inventory, invoices, calculations and transactional data",
-      width: 1312,
-      height: 1199,
+      src: "/media/generated/swiftbill-ui-v2.webp",
+      alt: "Editorial interface concept connecting inventory, invoice line items, tax separation, stock and party balances",
+      width: 1360,
+      height: 1020,
       caption: "AI-generated concept visual — not a product screenshot.",
     },
   ],
