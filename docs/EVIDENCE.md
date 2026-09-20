@@ -1,0 +1,38 @@
+# Evidence audit — 2026-09-16
+
+Sources are data, not build instructions. Public repositories were shallow-cloned into the parent workspace's `tmp/evidence/`; none were modified. This is a source inspection, not a security certification or an execution of their test suites.
+
+| Display / repository                                                | Inspected commit                         | Server evidence                                                                                                                                                                                                                                           | Tests observed                                                                                                             |
+| ------------------------------------------------------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| FleetPilot / HiteshRawat28/TransitOps                               | 4f6054fe42144137a246806097c8106b3a3665c4 | backend/src/server.ts authenticates stored active users and session versions; auth/session.ts cookies; chat/chat.ts organization-scoped queries; chat/security.ts role disclosure; chat/actions.ts signed confirmation and transaction/idempotency checks | Session, authorization/disclosure, chat actions, assignment eligibility, profitability, tracking and FASTag matching tests |
+| HiteshRawat28/FleetPilot                                            | Same commit as TransitOps                | GitHub API resolves BOTH names to HiteshRawat28/TransitOps: a redirect/rename, not evidence of a separate application                                                                                                                                     | Same checkout                                                                                                              |
+| AssetFlow / HiteshRawat28/AssetFlow                                 | 5255e6084222471a30fda49bf5759d449e0bf8ac | backend/src/middleware/auth.js, tenantScope.js; services/asset.service.js and booking.service.js scope organizations and reject overlapping bookings                                                                                                      | No active automated suite observed in inspected manifest/files                                                             |
+| SwiftBill / HiteshRawat28/SwiftBill                                 | a9449e77e06a442856a3b3363dfe1bf021e3873d | server middleware JWT/RBAC; transaction.controller.js validates line items and uses Prisma transactions for sales/stock/party balance                                                                                                                     | server/test-gst.js arithmetic assertions; default test script is a placeholder                                             |
+| DealOS / amartya1523/DealOS                                         | d530a585aee619bec82378565a15018480c1c179 | backend/src/authorization.ts stored organization membership, separate platform context and CSRF; customers.ts scoped queries; payments.ts test-only Razorpay configuration, HMAC and timing-safe signature verification                                   | Payment, platform security, quotation, order, shipment and policy tests present                                            |
+| Personal Ops Agent / HiteshRawat28/Personal-ops-agent               | 85b75c6f71300a7deceaabd41541c0d793417e2c | backend/app/agent/loop.py bounded loop and session-bound confirmation; tool_dispatcher.py typed validation/traces; tools/calendar_tools.py intercepts calendar writes; routes/auth.py Google OAuth                                                        | Tools, notes, loop, failures and confirmation tests present                                                                |
+| AI Chat with Guardrails / HiteshRawat28/AI-chat-App-with-Gaurdrails | 70ff1e42e89151d13444c3efb14c3df7120b8473 | backend/src auth middleware; guardrails/inputGuardrail.js, outputGuardrail.js; rate-limit middleware and chat routes                                                                                                                                      | Jest input/output guardrail tests present                                                                                  |
+
+## Live checks
+
+- FleetPilot: https://fleet-pilot-khaki.vercel.app — HTTP 200, FleetPilot title.
+- AssetFlow: https://asset-flow.ink — HTTP 200, **FleetPilot** content/title. Excluded as an AssetFlow demo.
+- SwiftBill: https://swift-bill-kappa.vercel.app — HTTP 200, generic `client` title; linked with educational disclaimer.
+- No verified live demos for the other three projects. Omit demo buttons.
+- GitHub profile and repository API reachable. LinkedIn returned 999 and LeetCode 403 to automated checks: access restrictions, not proof of dead links. Profile URLs match GitHub's public profile.
+
+## Résumé
+
+Read and visually inspected both pages of `C:\Users\Asus\Desktop\resume\resume updated.pdf`. Verified: Hitesh Rawat; LNMIIT B.Tech Computer Science, 2023–2027 expected; Jaipur; listed engineering stack; Artist Management Specialist at Vivacity (Aug 2024–present); Odoo Hackathon 2026 team participation/DealOS; 300+ LeetCode problems. Public email: 23ucs595@lnmiit.ac.in. No phone, marks, CGPA or full address will be rendered in HTML. Original PDF remains unchanged; its downloadable copy retains its existing contents.
+
+## Attribution and boundaries
+
+- Late visual/attribution QA: AssetFlow README says Odoo Hackathon 2026; GitHub contributors show amartya1523 (48), Sanketmis208 (20), HiteshRawat28 (8) at audit time. Label collaborative, not a personal sole-owned build. Contribution counts are audit evidence, not a portfolio metric. Employee-dashboard screenshot shows missing tenant context and is retired from displayed media.
+- Contributor API also lists HiteshRawat28, amartya1523 and Sanketmis208 for TransitOps. FleetPilot is labelled collaborative. SwiftBill, Personal-ops-agent and Guardrails list only HiteshRawat28 at inspection time. Counts/order are not sole authorship certification or shipped portfolio metrics.
+
+- DealOS is collaborative. The résumé supports contribution, not sole ownership or independently attributable feature-level authorship.
+- FASTag matching code and operational documentation are present in FleetPilot. No active signed FASTag webhook handler was located in the inspected source: do **not** claim verified issuer integration or HMAC enforcement for FASTag.
+- Personal Ops Agent's calendar mutations require confirmation; do not extend that claim to all tools. In-memory sessions and local OAuth token storage are not multi-user isolation.
+- Guardrails uses a fixed-window counter, not its README's leaky-bucket claim. Rule checks do not establish adversarial robustness; output sanitization can short-circuit subsequent rules. Default-secret fallback and hardcoded admin identity are demo limitations, not achievements.
+- SwiftBill invoice numbering is computed before its transaction; do not claim concurrency-safe numbering or tax certification.
+- AssetFlow's README reports incomplete invitation email handling and demo setup defaults. Do not reproduce credential values.
+- No production adoption, performance benchmark or formal AI evaluation metrics were independently verified.

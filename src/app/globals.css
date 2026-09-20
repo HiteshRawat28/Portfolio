@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+@theme inline {
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-surface-elevated: var(--color-surface-elevated);
+  --color-primary: var(--color-text-primary);
+  --color-secondary: var(--color-text-secondary);
+  --color-inverse: var(--color-text-inverse);
+  --color-border: var(--color-border);
+  --color-border-strong: var(--color-border-strong);
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-accent-subtle: var(--color-accent-subtle);
+  --color-focus: var(--color-focus);
+  --color-ai-accent: var(--color-ai-accent);
+  --color-ai-subtle: var(--color-ai-subtle);
+  --color-success: var(--color-success);
+  --color-error: var(--color-error);
+  --font-sans: var(--font-portfolio-sans);
+  --font-mono: var(--font-portfolio-sans);
+  --text-hero: var(--hero-type-size);
+  --text-hero--line-height: var(--hero-type-leading);
+  --text-section: var(--section-type-size);
+  --text-section--line-height: 1;
+  --radius-tag: var(--radius-tag);
+  --radius-button: var(--radius-button);
+  --radius-media: var(--radius-media);
+  --shadow-frame: var(--shadow-frame);
+  --shadow-action: var(--shadow-action);
+  --aspect-landscape: var(--aspect-landscape);
+  --aspect-portrait: var(--aspect-portrait);
+  --aspect-project: var(--aspect-project);
+}
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-height) + 1.5rem);
+  }
+  body {
+    background: var(--color-background);
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+  p {
+    max-width: 68ch;
+  }
+  a,
+  button,
+  input,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+  button,
+  a {
+    touch-action: manipulation;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: wait;
+  }
+  ::selection {
+    background: var(--color-accent-subtle);
+  }
+}
+@utility site-container {
+  width: min(calc(100% - 2rem), var(--container-width));
+  margin-inline: auto;
+  @media (min-width: 768px) {
+    width: min(calc(100% - 3rem), var(--container-width));
+  }
+}
+@utility split-grid {
+  display: grid;
+  align-items: start;
+  gap: var(--split-gap);
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--split-gap-desktop);
+  }
+}
+@utility section-space {
+  padding-block: var(--section-space);
+}
+@utility eyebrow {
+  font-family: var(--font-portfolio-sans), sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+@utility feedback {
+  transition:
+    color var(--duration-feedback) var(--ease-standard),
+    background-color var(--duration-feedback) var(--ease-standard),
+    border-color var(--duration-feedback) var(--ease-standard);
+}
+@utility prose-list {
+  display: grid;
+  gap: 0.75rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+@utility portfolio-hero {
+  padding-top: var(--hero-space-top);
+  padding-bottom: var(--hero-space-bottom);
+}
+@utility hero-copy {
+  max-width: var(--hero-width);
+  margin-inline: auto;
+}
+@utility portfolio-nav {
+  min-height: var(--nav-height);
+}
+@utility section-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  background: var(--color-surface);
+  padding-inline: 1rem;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+@utility project-gallery {
+  width: calc(100% - var(--gallery-gutter) * 2);
+  margin-inline: auto;
+  @media (min-width: 768px) {
+    grid-template-columns: var(--gallery-columns);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

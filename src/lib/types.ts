@@ -1,0 +1,68 @@
+export type Category = "full-stack" | "ai";
+export type Decision = { title: string; detail: string };
+export type ProjectMedia = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption: string;
+};
+export type AIControls = {
+  task: string;
+  provider: string;
+  permissions: string;
+  humanApproval: string;
+  guardrails: string;
+  observability: string;
+  failureHandling: string;
+  evaluation: string;
+  limitations: string;
+};
+export type Project = {
+  slug: string;
+  name: string;
+  repoName: string;
+  shortDescription: string;
+  fullSummary: string;
+  role: string;
+  collaborationType: string;
+  problem: string;
+  users: string[];
+  responsibilities: string[];
+  constraints: string[];
+  technicalDecisions: Decision[];
+  technologies: string[];
+  architecture: Decision[];
+  security: string[];
+  dataFlow: string[];
+  integrations: string[];
+  testing: string[];
+  deployment: string[];
+  outcomes: string[];
+  limitations: string[];
+  nextSteps: string[];
+  repositoryUrl: string;
+  liveUrl: string | null;
+  media: ProjectMedia[];
+  featured: boolean;
+  categories: Category[];
+  ai?: AIControls;
+};
+export type Capability = {
+  title: string;
+  description: string;
+  tools: string[];
+};
+export type Profile = {
+  name: string;
+  positioning: string;
+  email: string;
+  location: string;
+  education: string;
+  educationPeriod: string;
+  bio: string;
+  leadership: string;
+  achievement: string;
+  problemSolving: string;
+  links: { label: string; href: string }[];
+};
