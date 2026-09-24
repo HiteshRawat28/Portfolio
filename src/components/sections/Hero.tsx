@@ -1,6 +1,7 @@
 import { Container } from "../primitives/Container";
 import { Button } from "../primitives/Button";
 import { TextLink } from "../primitives/TextLink";
+import { SocialLink } from "../primitives/SocialLink";
 import { profile } from "@/content/profile";
 import { HeroDecoration } from "./HeroDecoration";
 
@@ -36,14 +37,11 @@ export function Hero() {
           </div>
           <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
             {profile.links.slice(0, 2).map((link) => (
-              <TextLink
+              <SocialLink
                 key={link.label}
+                label={link.label}
                 href={link.href}
-                external
-                className="text-sm"
-              >
-                {link.label}
-              </TextLink>
+              />
             ))}
             <TextLink href={`mailto:${profile.email}`} className="text-sm">
               Email me

@@ -6,6 +6,7 @@ import { handleContact } from "../src/lib/contact-service";
 const message = {
   name: "Test Recruiter",
   email: "tester@example.org",
+  subject: "Software engineering opportunity",
   message: "A test opportunity with enough context for validation.",
   website: "",
 };
@@ -36,6 +37,8 @@ test("schema trims and rejects bad types, controls, short and long content", () 
     null,
     {},
     { ...message, email: "bad" },
+    { ...message, subject: "no" },
+    { ...message, subject: "Line\nInjection" },
     { ...message, name: "x" },
     { ...message, name: "Name\nInjection" },
     { ...message, message: "short" },
@@ -94,6 +97,16 @@ test("invalid JSON, invalid fields, size limits, origin and type are rejected", 
     body: "{broken",
   });
   assert.equal((await handleContact(malformed, deps())).status, 400);
+});
+test("same browser host is accepted when framework request URL uses a local alias", async () => {
+  const response = await handleContact(
+    request(message, {
+      origin: "http://127.0.0.1:3000",
+      host: "127.0.0.1:3000",
+    }),
+    deps(),
+  );
+  assert.equal(response.status, 200);
 });
 test("missing key and honeypot never send", async () => {
   let sent = 0;

@@ -15,8 +15,8 @@ Routes: homepage; six-project index; six full case studies; full-stack and AI fo
 - `src/content/`: profile, five capabilities and six typed project records/ordering registry. Edit one project file to change all presentations.
 - `src/lib/`: content types, metadata, motion conventions, shared validation, process-local limiter and injected contact service.
 - `src/styles/tokens.css`: palette/motion/layout tokens; Tailwind utilities map semantic names in globals.css.
-- `src/app/api/contact/route.ts`: thin server adapter for Resend. No separate Express application is needed for one dynamic endpoint. Public content remains static; /contact is dynamic to reflect credential availability at runtime.
-- `public/Hitesh-Rawat-Resume.pdf`: byte-identical original copy. No phone/marks/full address rendered in HTML; PDF retains its original contents.
+- `src/app/api/contact/route.ts`: thin server adapter for Resend. No separate Express application is needed for one dynamic endpoint. The homepage and /contact render dynamically to reflect credential availability at runtime; the remaining content routes stay static.
+- `public/Hitesh-Rawat-Resume.pdf`: byte-identical original copy. The owner explicitly approved publishing the phone number in the contact UI; marks and full address remain absent from HTML. PDF retains its original contents.
 - `project_scaffold/`: planning and persistent AI-context documents. Root AGENTS.md is only an auto-discovery pointer.
 - `docs/`: evidence, gaps, QA, licenses and handoff. `tests/`: Node built-in tests via tsx.
 
@@ -27,10 +27,11 @@ Use Node 22+ and npm. System environment verified with Node 22.15.0/npm 10.9.2. 
 Optional configuration: copy .env.example to .env.local, keeping it gitignored.
 
 - RESEND_API_KEY: server-only key, never NEXT_PUBLIC.
-- CONTACT_TO_EMAIL: email associated with the Resend account for the default onboarding sender. Do not put a recruiter's address here. The default domain cannot send to arbitrary recipients; see [Resend's restriction](https://resend.com/docs/knowledge-base/403-error-resend-dev-domain).
+- CONTACT_TO_EMAIL: the owner's receiving inbox. The owner supplied `rawathitesh2812@gmail.com`, which is already present in the ignored local `.env.local`; set it separately on the deployment host. With Resend's test sender, it must match the email on the Resend account. A local test reached this inbox on 2026-09-24.
+- CONTACT_FROM_EMAIL: optional sending address on a domain verified in Resend. Leave empty to use `onboarding@resend.dev` for initial testing; that test sender cannot send to arbitrary recipients. A verified domain is the production path.
 - NEXT_PUBLIC_SITE_URL: actual origin, without a path. Defaults to localhost:3000; set before your production build to generate correct canonicals, sitemap and social URLs. No remote domain is assumed or deployed.
 
-No key/valid recipient means no form, only working contact links. The form requires JavaScript; without it, a noscript fallback hides the form and points to email rather than leaking a GET submission into the URL. Submitted data is plain text sent to Resend/inbox; no portfolio database or analytics retains it.
+The closing homepage section and /contact always show the same name, email, subject and message form. Until the key, recipient and sender settings are valid, the fields and send button are disabled with a visible setup notice; the email and phone links remain usable. Once configured, submitting stays on-site and asks Resend to deliver to the owner's inbox without opening Gmail. The form requires JavaScript; without it, a noscript fallback hides the form and points to email rather than leaking a GET submission into the URL. Submitted data is plain text sent to Resend/inbox; no portfolio database or analytics retains it.
 
 ## Contact behavior and boundaries
 
@@ -48,8 +49,8 @@ Lighthouse 13.4.1 is transient QA tooling, run with bundled Node 24.19 because i
 
 See QA.md for measured checks and project_scaffold/Memory.md for actual per-phase outputs. No checks certify WCAG compliance, AI robustness, source-project security, production reliability or accounting correctness. Source-project tests were inspected, not run.
 
-Before your deployment: set canonical origin; decide whether to redact the downloadable PDF; verify Resend delivery if enabling the form; perform native 200%/text-only resize and reduced-motion preference checks in a full browser; verify LinkedIn manually (LeetCode was browser-verified); obtain clean real workflow screenshots; correct AssetFlow's domain; attribute granular collaborative contributions using commits. Analytics stays deferred pending a privacy decision.
+Before your deployment: set canonical origin; decide whether to redact the downloadable PDF; copy the existing local Resend key securely to the host's server environment and verify delivery there; perform native 200%/text-only resize and reduced-motion preference checks in a full browser; verify LinkedIn manually (LeetCode was browser-verified); obtain clean real workflow screenshots; correct AssetFlow's domain; attribute granular collaborative contributions using commits. Analytics stays deferred pending a privacy decision.
 
-Metadata streaming is disabled because local metadata is inexpensive and must appear in the initial HTML head, including the dynamic contact page. The optional contact form uses a dynamically imported server wrapper, preserving SSR while deferring its client code when delivery is not configured. See [Next's metadata setting](https://nextjs.org/docs/15/app/api-reference/config/next-config-js/htmlLimitedBots) and [server-component lazy loading](https://nextjs.org/docs/15/app/guides/lazy-loading#importing-server-components).
+Metadata streaming is disabled because local metadata is inexpensive and must appear in the initial HTML head, including the dynamic home and contact pages. The visible contact form uses a dynamically imported server wrapper, preserving SSR while keeping its client logic in a separate bundle. See [Next's metadata setting](https://nextjs.org/docs/15/app/api-reference/config/next-config-js/htmlLimitedBots) and [server-component lazy loading](https://nextjs.org/docs/15/app/guides/lazy-loading#importing-server-components).
 
 The initial repository contained only scaffold/Git history and user-recorded deletions. Those were not restored wholesale or committed. No push, deployment, hosting configuration, secrets or source-project changes were performed.

@@ -5,6 +5,7 @@ import { Stack } from "@/components/primitives/Stack";
 import { Divider } from "@/components/primitives/Divider";
 import { Text } from "@/components/primitives/Text";
 import { TextLink } from "@/components/primitives/TextLink";
+import { SocialLink } from "@/components/primitives/SocialLink";
 import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata(
   "About",
@@ -46,11 +47,19 @@ export default function AboutPage() {
           <Text className="mt-4">{profile.problemSolving}</Text>
         </div>
         <div className="flex flex-wrap gap-6">
-          {profile.links.map((link) => (
-            <TextLink key={link.label} href={link.href} external>
-              {link.label}
-            </TextLink>
-          ))}
+          {profile.links.map((link) =>
+            ["GitHub", "LinkedIn"].includes(link.label) ? (
+              <SocialLink
+                key={link.label}
+                label={link.label}
+                href={link.href}
+              />
+            ) : (
+              <TextLink key={link.label} href={link.href} external>
+                {link.label}
+              </TextLink>
+            ),
+          )}
           <TextLink href="/resume">View résumé</TextLink>
           <TextLink href="/contact">Email me</TextLink>
         </div>

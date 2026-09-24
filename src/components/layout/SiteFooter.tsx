@@ -1,5 +1,5 @@
 import { Container } from "../primitives/Container";
-import { TextLink } from "../primitives/TextLink";
+import { SocialLink } from "../primitives/SocialLink";
 import { profile } from "@/content/profile";
 export function SiteFooter() {
   const profileLinks = profile.links.filter((link) =>
@@ -13,14 +13,13 @@ export function SiteFooter() {
         </p>
         <div className="flex flex-wrap gap-6 sm:justify-end">
           {profileLinks.map((link) => (
-            <TextLink
+            <SocialLink
               key={link.label}
+              label={link.label}
               href={link.href}
-              external
-              className="border-inverse/30 text-sm text-inverse hover:border-inverse hover:text-inverse"
-            >
-              {link.label}
-            </TextLink>
+              inverse
+              className="text-inverse hover:text-inverse/75"
+            />
           ))}
         </div>
       </Container>

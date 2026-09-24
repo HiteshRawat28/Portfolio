@@ -57,6 +57,7 @@ export type Profile = {
   name: string;
   positioning: string;
   email: string;
+  phone: string;
   location: string;
   education: string;
   educationPeriod: string;

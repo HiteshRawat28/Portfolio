@@ -12,6 +12,8 @@ export const metadata = buildMetadata(
   profile.positioning,
   "/",
 );
+// Contact availability follows the server's delivery configuration at request time.
+export const dynamic = "force-dynamic";
 export default function Home() {
   return (
     <>

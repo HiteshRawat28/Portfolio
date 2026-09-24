@@ -7,7 +7,14 @@ import {
   fieldErrors,
 } from "@/lib/validation";
 import { Button } from "../primitives/Button";
-export function ContactForm() {
+export function ContactForm({
+  appearance,
+  available = true,
+}: {
+  appearance?: "inline";
+  available?: boolean;
+}) {
+  const inline = appearance === "inline";
   const prefix = useId();
   const form = useRef<HTMLFormElement>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -80,10 +87,20 @@ export function ContactForm() {
       action="/api/contact"
       noValidate
       aria-busy={busy}
-      className="contact-form mt-8 max-w-2xl border-t border-border pt-8"
+      className={`contact-form max-w-2xl ${inline ? "" : "mt-8 border-t border-border pt-8"}`}
     >
-      <fieldset disabled={busy} className="grid gap-6">
-        <legend className="mb-6 text-xl font-semibold">Send a message</legend>
+      {!available && (
+        <p
+          role="status"
+          className="mb-6 border-l-2 border-accent pl-4 text-sm text-secondary"
+        >
+          Online sending is being set up. Please use the email link for now.
+        </p>
+      )}
+      <fieldset disabled={busy || !available} className="grid gap-6">
+        <legend className={inline ? "sr-only" : "mb-6 text-xl font-semibold"}>
+          Send a message
+        </legend>
         {[
           {
             key: "name",
@@ -94,7 +111,7 @@ export function ContactForm() {
           },
           {
             key: "email",
-            label: "Your email",
+            label: "Email address",
             type: "email",
             autoComplete: "email",
             maxLength: 254,
@@ -105,7 +122,7 @@ export function ContactForm() {
               htmlFor={`${prefix}-${field.key}`}
               className="text-sm font-medium"
             >
-              {field.label} <span className="text-secondary">(required)</span>
+              {field.label} <span className="sr-only">(required)</span>
             </label>
             <input
               id={`${prefix}-${field.key}`}
@@ -114,6 +131,13 @@ export function ContactForm() {
               autoComplete={field.autoComplete}
               maxLength={field.maxLength}
               required
+              placeholder={
+                inline
+                  ? field.key === "name"
+                    ? "Your name"
+                    : "you@example.com"
+                  : undefined
+              }
               aria-invalid={Boolean(errors[field.key])}
               aria-describedby={
                 errors[field.key] ? `${prefix}-${field.key}-error` : undefined
@@ -131,16 +155,44 @@ export function ContactForm() {
           </div>
         ))}
         <div>
+          <label htmlFor={`${prefix}-subject`} className="text-sm font-medium">
+            What do you have in mind?{" "}
+            <span className="sr-only">(required)</span>
+          </label>
+          <input
+            id={`${prefix}-subject`}
+            name="subject"
+            type="text"
+            maxLength={120}
+            required
+            placeholder={inline ? "A role, a project, a good idea…" : undefined}
+            aria-invalid={Boolean(errors.subject)}
+            aria-describedby={
+              errors.subject ? `${prefix}-subject-error` : undefined
+            }
+            className={inputClass}
+          />
+          {errors.subject && (
+            <p
+              id={`${prefix}-subject-error`}
+              className="mt-2 text-sm text-error"
+            >
+              Error: {errors.subject}
+            </p>
+          )}
+        </div>
+        <div>
           <label htmlFor={`${prefix}-message`} className="text-sm font-medium">
-            Message <span className="text-secondary">(required)</span>
+            A little more detail <span className="sr-only">(required)</span>
           </label>
           <textarea
             id={`${prefix}-message`}
             name="message"
-            rows={6}
+            rows={inline ? 3 : 6}
             minLength={20}
             maxLength={5000}
             required
+            placeholder={inline ? "Tell me about it…" : undefined}
             aria-invalid={Boolean(errors.message)}
             aria-describedby={`${prefix}-message-hint${errors.message ? ` ${prefix}-message-error` : ""}`}
             className={inputClass}
@@ -173,13 +225,14 @@ export function ContactForm() {
           />
         </div>
         <p className="text-xs text-secondary">
-          Your name, email and message are sent through Resend to Hitesh’s
-          inbox. No portfolio database or analytics stores them. Avoid sensitive
-          information.
+          {available ? "Your" : "Once enabled, your"} name, email, subject and
+          message go through Resend to Hitesh’s inbox. No portfolio database or
+          analytics stores them. Avoid sensitive information.
         </p>
-        <div>
-          <Button type="submit" disabled={busy} busy={busy}>
+        <div className={inline ? "flex justify-end" : ""}>
+          <Button type="submit" disabled={busy || !available} busy={busy}>
             {busy ? "Sending message…" : "Send message"}
+            {inline && <span aria-hidden="true">↗</span>}
           </Button>
         </div>
       </fieldset>

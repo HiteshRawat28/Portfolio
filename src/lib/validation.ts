@@ -12,6 +12,12 @@ export const contactSchema = z.object({
     .trim()
     .max(254, "Email is too long.")
     .pipe(z.email("Enter a valid email address.")),
+  subject: z
+    .string()
+    .trim()
+    .min(3, "Enter at least 3 characters.")
+    .max(120, "Use 120 characters or fewer.")
+    .refine(singleLine, "Use a single-line subject."),
   message: z
     .string()
     .trim()
@@ -39,7 +45,7 @@ export function fieldErrors(error: z.ZodError): Record<string, string> {
     const key = issue.path[0];
     if (
       typeof key === "string" &&
-      ["name", "email", "message"].includes(key) &&
+      ["name", "email", "subject", "message"].includes(key) &&
       !fields[key]
     )
       fields[key] = issue.message;

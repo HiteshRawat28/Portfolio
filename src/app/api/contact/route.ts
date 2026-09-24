@@ -1,24 +1,24 @@
 import { Resend } from "resend";
-import { z } from "zod";
 import { handleContact } from "@/lib/contact-service";
+import { getContactConfig } from "@/lib/contact-config";
 import { ContactRateLimiter } from "@/lib/rate-limit";
 export const runtime = "nodejs";
 const limiter = new ContactRateLimiter();
 export async function POST(request: Request) {
-  const key = process.env.RESEND_API_KEY?.trim();
-  const recipient = z.email().safeParse(process.env.CONTACT_TO_EMAIL?.trim());
+  const config = getContactConfig();
   return handleContact(request, {
-    configured: Boolean(key && recipient.success),
+    configured: config.configured,
     limiter,
     send: async (input, idempotencyKey) => {
-      if (!key || !recipient.success) throw new Error("unconfigured");
-      const result = await new Resend(key).emails.send(
+      if (!config.configured || !config.recipient || !config.sender)
+        throw new Error("unconfigured");
+      const result = await new Resend(config.key).emails.send(
         {
-          from: "Portfolio <onboarding@resend.dev>",
-          to: recipient.data,
+          from: `Hitesh Rawat Portfolio <${config.sender}>`,
+          to: config.recipient,
           replyTo: input.email,
-          subject: `Portfolio enquiry from ${input.name}`,
-          text: `Name: ${input.name}\nEmail: ${input.email}\n\n${input.message}`,
+          subject: `Portfolio enquiry: ${input.subject}`,
+          text: `Name: ${input.name}\nEmail: ${input.email}\nSubject: ${input.subject}\n\n${input.message}`,
         },
         { idempotencyKey },
       );

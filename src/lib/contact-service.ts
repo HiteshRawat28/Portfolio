@@ -54,7 +54,25 @@ export async function handleContact(
   deps: Dependencies,
 ): Promise<Response> {
   const origin = request.headers.get("origin");
-  if (origin && origin !== new URL(request.url).origin)
+  const requestUrl = new URL(request.url);
+  let sameOrigin = !origin || origin === requestUrl.origin;
+  if (origin && !sameOrigin) {
+    try {
+      const submitted = new URL(origin);
+      const host = request.headers.get("host");
+      const forwardedProtocol = request.headers
+        .get("x-forwarded-proto")
+        ?.split(",")[0]
+        ?.trim();
+      sameOrigin =
+        submitted.host === host &&
+        submitted.protocol ===
+          `${forwardedProtocol || requestUrl.protocol.slice(0, -1)}:`;
+    } catch {
+      sameOrigin = false;
+    }
+  }
+  if (!sameOrigin)
     return json(
       { ok: false, error: "Submit from this website, or use the email link." },
       403,
@@ -117,6 +135,7 @@ export async function handleContact(
       JSON.stringify([
         input.name,
         input.email,
+        input.subject,
         input.message,
         Math.floor(now / 3600000),
       ]),

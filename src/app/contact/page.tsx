@@ -1,12 +1,13 @@
-import { z } from "zod";
 import loadComponent from "next/dynamic";
 import { profile } from "@/content/profile";
 import { Container } from "@/components/primitives/Container";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import { TextLink } from "@/components/primitives/TextLink";
+import { SocialLink } from "@/components/primitives/SocialLink";
 import { buildMetadata } from "@/lib/metadata";
-// Import a server wrapper so its client form is only loaded when delivery is configured.
+import { getContactConfig } from "@/lib/contact-config";
+// Import a server wrapper so the client form stays a separate bundle.
 const ContactFormSection = loadComponent(
   () => import("@/components/sections/ContactFormSection"),
 );
@@ -17,10 +18,7 @@ export const metadata = buildMetadata(
 );
 export const dynamic = "force-dynamic";
 export default function ContactPage() {
-  const configured = Boolean(
-    process.env.RESEND_API_KEY?.trim() &&
-    z.email().safeParse(process.env.CONTACT_TO_EMAIL?.trim()).success,
-  );
+  const { configured } = getContactConfig();
   return (
     <Container className="section-space">
       <p className="eyebrow text-accent">Contact / opportunities</p>
@@ -39,30 +37,24 @@ export default function ContactPage() {
           {profile.email}
         </TextLink>
       </div>
+      <a
+        href={`tel:${profile.phone}`}
+        className="feedback mt-5 inline-block border-b border-border-strong pb-1 hover:border-accent hover:text-accent"
+      >
+        Call: {profile.phone}
+      </a>
       <div className="mt-6 flex flex-wrap gap-6">
         {profile.links.slice(0, 2).map((link) => (
-          <TextLink key={link.label} href={link.href} external>
-            {link.label}
-          </TextLink>
+          <SocialLink key={link.label} label={link.label} href={link.href} />
         ))}
       </div>
-      {configured ? (
-        <>
-          <ContactFormSection />
-          <noscript>
-            <style>{".contact-form { display: none; }"}</style>
-            <Text className="mt-8 text-sm">
-              The form requires JavaScript. Please use the direct email link
-              above.
-            </Text>
-          </noscript>
-        </>
-      ) : (
-        <Text className="mt-8 max-w-2xl border-t border-border pt-8 text-sm">
-          The direct email link above is the contact method for this local
-          build. The optional form appears when email delivery is configured.
+      <ContactFormSection available={configured} />
+      <noscript>
+        <style>{".contact-form { display: none; }"}</style>
+        <Text className="mt-8 text-sm">
+          The form requires JavaScript. Please use the direct email link above.
         </Text>
-      )}
+      </noscript>
     </Container>
   );
 }

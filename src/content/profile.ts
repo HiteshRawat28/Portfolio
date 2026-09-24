@@ -4,6 +4,7 @@ export const profile: Profile = {
   positioning:
     "Software engineer building full-stack products and practical AI applications.",
   email: "23ucs595@lnmiit.ac.in",
+  phone: "7455085375",
   location: "Jaipur, India",
   education: "B.Tech · Computer Science · LNMIIT, Jaipur",
   educationPeriod: "2023–2027 · expected graduation",

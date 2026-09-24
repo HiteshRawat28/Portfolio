@@ -1,59 +1,83 @@
-import { Section } from "../primitives/Section";
-import { Button } from "../primitives/Button";
-import { TextLink } from "../primitives/TextLink";
+import loadComponent from "next/dynamic";
+import { Container } from "../primitives/Container";
+import { SocialLink } from "../primitives/SocialLink";
 import { profile } from "@/content/profile";
+import { getContactConfig } from "@/lib/contact-config";
+
+const ContactFormSection = loadComponent(() => import("./ContactFormSection"));
 
 export function ContactCTA() {
+  const { configured } = getContactConfig();
   const professionalLinks = profile.links.filter((link) =>
     ["GitHub", "LinkedIn"].includes(link.label),
   );
+
   return (
-    <Section id="contact" className="bg-accent-subtle">
-      <div className="mx-auto max-w-4xl text-center">
-        <p className="eyebrow text-accent">Open to opportunities</p>
-        <h2 className="mt-7 text-section font-normal">
-          I’m open to software engineering opportunities.
-        </h2>
-        <p className="mx-auto mt-7 text-lg text-secondary">
-          Especially roles involving full-stack product work, backend systems,
-          or practical AI applications.
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Button href="/contact">Email me</Button>
-          <Button href="/resume" variant="secondary">
-            View résumé
-          </Button>
-        </div>
-        <div className="mx-auto mt-10 grid max-w-xl gap-3 sm:grid-cols-2">
-          {professionalLinks.map((link) => (
-            <TextLink
-              key={link.label}
-              href={link.href}
-              external
-              className="justify-between rounded-button border border-border bg-surface-elevated px-4 py-2.5 text-sm no-underline hover:border-accent hover:bg-background"
-            >
-              {link.label}
-            </TextLink>
-          ))}
-        </div>
-        <a
-          href={`mailto:${profile.email}`}
-          className="feedback group mx-auto mt-4 flex max-w-2xl items-center justify-between gap-5 rounded-media border border-border-strong bg-surface-elevated px-5 py-4 text-left text-primary hover:border-accent"
-        >
-          <span className="min-w-0">
-            <span className="eyebrow block text-secondary">Direct email</span>
-            <span className="mt-1 block break-all text-lg font-medium">
-              {profile.email}
-            </span>
-          </span>
-          <span
-            aria-hidden="true"
-            className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-accent text-inverse"
+    <section
+      id="contact"
+      aria-labelledby="contact-title"
+      className="section-space border-t border-border bg-accent-subtle"
+    >
+      <Container>
+        <div className="flex flex-col gap-10 border-b border-border pb-14 md:flex-row md:items-start md:justify-between md:gap-16 md:pb-20">
+          <div>
+            <p className="eyebrow text-accent">Contact / opportunities</p>
+            <h2 id="contact-title" className="mt-6 max-w-4xl text-section">
+              I’m open to{" "}
+              <span className="text-accent">software engineering</span>{" "}
+              opportunities.
+            </h2>
+          </div>
+          <a
+            href="#contact-form"
+            className="feedback flex size-40 shrink-0 flex-col items-center justify-center gap-5 self-start rounded-full border border-border-strong bg-surface-elevated text-center text-sm font-medium leading-tight hover:border-accent hover:text-accent md:size-52"
           >
-            →
-          </span>
-        </a>
-      </div>
-    </Section>
+            Start a<br /> conversation
+            <span aria-hidden="true" className="text-4xl font-light">
+              ↗
+            </span>
+          </a>
+        </div>
+
+        <div className="grid gap-14 pt-12 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <p className="max-w-sm text-lg leading-relaxed text-secondary">
+              Hiring for full-stack, backend, or practical AI application work?
+              I’d like to hear about the role and the team.
+            </p>
+            <a
+              href={`mailto:${profile.email}`}
+              className="feedback mt-8 inline-block max-w-full break-all border-b border-border-strong pb-1 text-xl hover:border-accent hover:text-accent md:text-2xl"
+            >
+              {profile.email}
+            </a>
+            <a
+              href={`tel:${profile.phone}`}
+              className="feedback mt-5 block w-fit border-b border-border-strong pb-1 text-base hover:border-accent hover:text-accent"
+            >
+              Call: {profile.phone}
+            </a>
+            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
+              {professionalLinks.map((link) => (
+                <SocialLink
+                  key={link.label}
+                  label={link.label}
+                  href={link.href}
+                />
+              ))}
+            </div>
+          </div>
+          <div id="contact-form">
+            <ContactFormSection appearance="inline" available={configured} />
+            <noscript>
+              <style>{".contact-form { display: none; }"}</style>
+              <p className="text-sm text-secondary">
+                The form requires JavaScript. Use the email link beside it.
+              </p>
+            </noscript>
+          </div>
+        </div>
+      </Container>
+    </section>
   );
 }
