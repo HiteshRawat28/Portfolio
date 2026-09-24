@@ -2,12 +2,13 @@ import { profile } from "@/content/profile";
 import { experience } from "@/content/experience";
 import { Section } from "../primitives/Section";
 import { TextLink } from "../primitives/TextLink";
+import { ProfilePortrait } from "./ProfilePortrait";
 
 export function About() {
   return (
     <Section id="experience">
-      <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-5">
+      <div className="grid gap-10 md:grid-cols-12 lg:gap-10">
+        <div className="md:col-span-7 lg:col-span-4">
           <p className="eyebrow text-accent">Experience & education</p>
           <h2 className="mt-5 text-section font-normal">
             Learning, building, and working with teams.
@@ -17,7 +18,10 @@ export function About() {
             More about me
           </TextLink>
         </div>
-        <dl className="divide-y divide-border border-y border-border lg:col-span-7">
+        <div className="md:col-span-5 md:self-end lg:col-span-3">
+          <ProfilePortrait />
+        </div>
+        <dl className="divide-y divide-border border-y border-border md:col-span-12 lg:col-span-5">
           {[
             ["Education", profile.education, profile.educationPeriod],
             ...experience.map((entry) => [

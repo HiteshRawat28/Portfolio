@@ -55,8 +55,27 @@ test("redesigned presentation contains no template owner destinations", () => {
     );
   }
 });
+test("the genuine portrait supports experience rather than replacing the hero artwork", () => {
+  assert.doesNotMatch(
+    readFileSync("src/components/sections/Hero.tsx", "utf8"),
+    /ProfilePortrait/,
+  );
+  assert.match(
+    readFileSync("src/components/sections/About.tsx", "utf8"),
+    /ProfilePortrait/,
+  );
+});
 test("generated visuals are local, lightweight and transparently labelled", () => {
-  assert.equal(designMedia.portrait, null);
+  assert.ok(designMedia.portrait);
+  assert.match(designMedia.portrait.src, /^\/media\/portrait\/.+\.webp$/);
+  assert.doesNotMatch(designMedia.portrait.caption, /AI-generated/i);
+  assert.equal(designMedia.portrait.width / designMedia.portrait.height, 4 / 5);
+  const portraitFile = join(
+    process.cwd(),
+    "public",
+    designMedia.portrait.src.replace(/^\//, ""),
+  );
+  assert.ok(statSync(portraitFile).size < 200_000);
   const media = [
     ...projects.map((project) => project.media[0]),
     designMedia.process,
