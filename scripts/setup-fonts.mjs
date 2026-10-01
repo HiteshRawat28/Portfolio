@@ -6,6 +6,19 @@ import { join } from "node:path";
 const directory = fileURLToPath(
   new URL("../src/assets/satoshi/", import.meta.url),
 );
+// Hosted builds fetch on every clean checkout, so absorb brief network or CDN failures.
+async function fetchWithRetry(url, attempts = 3) {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      const response = await fetch(url, { signal: AbortSignal.timeout(15000) });
+      if (response.ok || response.status < 500 || attempt === attempts)
+        return response;
+    } catch (error) {
+      if (attempt === attempts) throw error;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 1000 * attempt));
+  }
+}
 const missing = [];
 for (const weight of [400, 500]) {
   try {
@@ -19,11 +32,10 @@ if (missing.length) {
     "Fetching unmodified Satoshi webfonts from Fontshare for local self-hosting.",
   );
   console.info("License: https://www.fontshare.com/licenses/itf-ffl");
-  const response = await fetch(
+  const response = await fetchWithRetry(
     "https://api.fontshare.com/v2/css?f[]=satoshi@" +
       missing.join(",") +
       "&display=swap",
-    { signal: AbortSignal.timeout(15000) },
   );
   if (!response.ok)
     throw new Error("Fontshare stylesheet unavailable: " + response.status);
@@ -38,9 +50,7 @@ if (missing.length) {
     )?.[1];
     if (!path)
       throw new Error("Official Satoshi WOFF2 source not found: " + weight);
-    const font = await fetch("https:" + path, {
-      signal: AbortSignal.timeout(15000),
-    });
+    const font = await fetchWithRetry("https:" + path);
     if (!font.ok) throw new Error("Fontshare font unavailable: " + font.status);
     const bytes = Buffer.from(await font.arrayBuffer());
     if (bytes.length > 1000000 || bytes.toString("ascii", 0, 4) !== "wOF2")

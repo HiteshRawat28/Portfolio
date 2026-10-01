@@ -24,4 +24,4 @@ Development uses `.next-dev`; production uses `.next-production`, preventing sim
 
 Quality checks: `npm run format:check`, `npm run lint`, `npm run typecheck`, `npm test`, `npm run build`.
 
-See [handoff and configuration](docs/HANDOFF.md), [QA results](docs/QA.md), [content gaps](docs/CONTENT-GAPS.md), and [evidence](docs/EVIDENCE.md). Planning and AI-context documents are isolated in `project_scaffold/`. Set email/canonical configuration yourself; deployment remains yours.
+See [deployment runbook](docs/DEPLOYMENT.md), [handoff and configuration](docs/HANDOFF.md), [QA results](docs/QA.md), [content gaps](docs/CONTENT-GAPS.md), and [evidence](docs/EVIDENCE.md). Planning and AI-context documents are isolated in `project_scaffold/`. Deployment to Vercel is prepared but performed from your own account; follow the runbook.

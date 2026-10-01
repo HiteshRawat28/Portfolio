@@ -1,17 +1,26 @@
 import type { Metadata } from "next";
-function getSiteOrigin(): string {
+const localOrigin = "http://localhost:3000";
+function toOrigin(value: string | undefined): string | null {
+  if (!value?.trim()) return null;
   try {
-    const url = new URL(
-      process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-    );
-    return ["https:", "http:"].includes(url.protocol)
-      ? url.origin
-      : "http://localhost:3000";
+    const url = new URL(value.trim());
+    return ["https:", "http:"].includes(url.protocol) ? url.origin : null;
   } catch {
-    return "http://localhost:3000";
+    return null;
   }
 }
-export const siteOrigin = getSiteOrigin();
+// An explicit origin wins; Vercel's production hostname keeps canonicals off localhost when it is unset.
+export function resolveSiteOrigin(
+  env: Record<string, string | undefined>,
+): string {
+  const vercelHost = env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  return (
+    toOrigin(env.NEXT_PUBLIC_SITE_URL) ??
+    (vercelHost ? toOrigin(`https://${vercelHost}`) : null) ??
+    localOrigin
+  );
+}
+export const siteOrigin = resolveSiteOrigin(process.env);
 export function buildMetadata(
   title: string,
   description: string,
