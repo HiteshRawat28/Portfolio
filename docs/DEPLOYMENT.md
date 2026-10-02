@@ -40,6 +40,7 @@ Environment-variable changes apply only to new deployments. After editing any of
 - [ ] View source on `/`: `<link rel="canonical">` and `og:url` use the production origin, not localhost.
 - [ ] `/sitemap.xml` and `/robots.txt` use the production origin; `/og-default.png` renders.
 - [ ] `/Hitesh-Rawat-Resume.pdf` opens inline in Chrome.
+- [ ] `/googlec01748676e2dafde.html` returns the Google Search Console verification text; then click **Verify** in Search Console. Keep the file in `public/` — removing it un-verifies the property.
 - [ ] Headers: `curl -sI https://<domain>/` shows `content-security-policy` and `strict-transport-security`.
 - [ ] Browser console on the homepage and `/contact` shows no CSP violations.
 - [ ] Contact: the form is enabled; submit one clearly labelled test message; confirm it arrives in the inbox.
