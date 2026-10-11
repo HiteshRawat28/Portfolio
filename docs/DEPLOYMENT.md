@@ -38,7 +38,8 @@ Environment-variable changes apply only to new deployments. After editing any of
 - [ ] Build log: `Compiled successfully`, `Generating static pages (19/19)`, and no `Contact form will render disabled` warning.
 - [ ] `/`, `/projects`, one case study, `/about`, `/resume`, `/contact` and an unknown URL (branded 404) load.
 - [ ] View source on `/`: `<link rel="canonical">` and `og:url` use the production origin, not localhost.
-- [ ] `/sitemap.xml` and `/robots.txt` use the production origin; `/og-default.png` renders.
+- [ ] `/sitemap.xml` and `/robots.txt` use the production origin; `/og-default.png` renders and its footer shows the production host.
+- [ ] Social preview: run the homepage and one case study through LinkedIn Post Inspector (https://www.linkedin.com/post-inspector/) so LinkedIn re-scrapes the card instead of serving a cached one.
 - [ ] `/Hitesh-Rawat-Resume.pdf` opens inline in Chrome.
 - [ ] `/googlec01748676e2dafde.html` returns the Google Search Console verification text; then click **Verify** in Search Console. Keep the file in `public/` — removing it un-verifies the property.
 - [ ] Headers: `curl -sI https://<domain>/` shows `content-security-policy` and `strict-transport-security`.
